@@ -1,4 +1,2 @@
 .next
 node_modules
-infra/database.js
-.env
