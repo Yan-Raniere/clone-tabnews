@@ -14,6 +14,19 @@ async function query(queryObject) {
   return result;
 }
 
+async function getDatabaseStatus() {
+  const version = await query("SHOW server_version;");
+  const maxConnections = await query("SHOW max_connections;");
+  const usedConnections = await query("SELECT COUNT(*) FROM pg_stat_activity;");
+
+  return {
+    version: version.rows[0].server_version,
+    maxConnections: maxConnections.rows[0].max_connections,
+    usedConnections: usedConnections.rows[0].count,
+  };
+}
+
 export default {
   query: query,
+  getDatabaseStatus: getDatabaseStatus,
 };
