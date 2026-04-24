@@ -6,13 +6,13 @@ async function status(request, response) {
 
   const version = infos.version;
   const maxConnections = infos.maxConnections;
-  const usedConnections = infos.usedConnections;
+  const usingConnections = infos.usingConnections;
 
   response.status(200).json({
     updated_at: updatedAt,
     version: version,
     max_connections: maxConnections,
-    used_connections: usedConnections,
+    using_connections: usingConnections,
   });
 }
 
