@@ -32,9 +32,9 @@ async function query(queryObject) {
 async function getDatabaseStatus() {
   const version = await query("SHOW server_version;");
   const maxConnections = await query("SHOW max_connections;");
-  const usingConnections = await query("  SELECT COUNT(*) 
-  FROM pg_stat_activity 
-  WHERE datname = current_database();;");
+  const usingConnections = await query(
+    "SELECT COUNT(*) FROM pg_stat_activity WHERE datname = current_database();",
+  );
 
   return {
     version: version.rows[0].server_version,
